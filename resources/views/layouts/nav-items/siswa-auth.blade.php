@@ -7,18 +7,22 @@
 </li>
 
 <li class="nav-item dropdown">
-    <a 
+    <a
         class="nav-link dropdown-toggle d-flex align-items-center gap-2"
         href="#"
         role="button"
         data-bs-toggle="dropdown"
-        aria-expanded="false"
-    >
+        aria-expanded="false">
         {{ auth('siswa')->user()->nama }}
     </a>
 
     <ul class="dropdown-menu dropdown-menu-end shadow">
-
+        <li>
+            <a class="dropdown-item" href="{{ route('siswa.akun.edit') }}">
+                <i class="bi bi-gear me-2"></i>
+                Akun Saya
+            </a>
+        </li>
         <li>
             <hr class="dropdown-divider">
         </li>

@@ -18,7 +18,7 @@ class Aspirasi extends Model
 
    public function laporan()
    {
-      return $this->belongsTo(LaporanPengaduan::class);
+      return $this->belongsTo(LaporanPengaduan::class, 'laporan_id');
    }
 
    public function admin()

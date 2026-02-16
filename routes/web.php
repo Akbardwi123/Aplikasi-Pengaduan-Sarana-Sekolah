@@ -3,10 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Siswa\AuthController;
 use App\Http\Controllers\Siswa\RegisterController;
+use App\Http\Controllers\Siswa\AkunController;
+use App\Http\Controllers\Siswa\DashboardController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::prefix('siswa')->name('siswa.')->group(function () {
 
@@ -20,7 +22,9 @@ Route::prefix('siswa')->name('siswa.')->group(function () {
     });
 
     Route::middleware('auth:siswa')->group(function () {
-        Route::view('/dashboard', 'siswa.dashboard')->name('dashboard');
+        Route::get('/dasboard', [DashboardController::class, 'index'])->name('dashboard');
+      
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+        Route::singleton('/akun', AkunController::class)->except('show');
     });
 });

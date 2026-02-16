@@ -28,6 +28,6 @@ class LaporanPengaduan extends Model
 
     public function aspirasi()
     {
-        return $this->hasMany(Aspirasi::class);
+        return $this->hasOne(Aspirasi::class, 'laporan_id');
     }
 }
