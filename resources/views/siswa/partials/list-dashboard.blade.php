@@ -4,6 +4,7 @@
             <th>#</th>
             <th>Keterangan Laporan</th>
             <th>Status</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -31,6 +32,12 @@
                     @else
                         <span class="badge bg-light text-dark">Menunggu</span>
                     @endif
+                </td>
+                <td>
+                    <a href="{{ route('siswa.laporan.show', $item->id) }}" class="btn btn-primary btn-sm">
+                        <i class="bi bi-eye"></i>
+                        Lihat
+                    </a>
                 </td>
             </tr>
         @empty

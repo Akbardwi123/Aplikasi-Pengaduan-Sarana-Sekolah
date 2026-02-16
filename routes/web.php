@@ -5,6 +5,7 @@ use App\Http\Controllers\Siswa\AuthController;
 use App\Http\Controllers\Siswa\RegisterController;
 use App\Http\Controllers\Siswa\AkunController;
 use App\Http\Controllers\Siswa\DashboardController;
+use App\Http\Controllers\Siswa\LaporanPengaduanController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,5 +27,8 @@ Route::prefix('siswa')->name('siswa.')->group(function () {
       
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
         Route::singleton('/akun', AkunController::class)->except('show');
+        Route::post('laporan/{aspirasi}/feedback', [LaporanPengaduanController::class, 'feedback'])
+            ->name('laporan.feedback');
+        Route::resource('laporan', LaporanPengaduanController::class)->except(['index', 'edit', 'update']);
     });
 });
