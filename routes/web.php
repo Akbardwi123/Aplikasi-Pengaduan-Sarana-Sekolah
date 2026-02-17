@@ -6,6 +6,9 @@ use App\Http\Controllers\Siswa\RegisterController;
 use App\Http\Controllers\Siswa\AkunController;
 use App\Http\Controllers\Siswa\DashboardController;
 use App\Http\Controllers\Siswa\LaporanPengaduanController;
+use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\AkunController as AdminAkunController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,11 +27,30 @@ Route::prefix('siswa')->name('siswa.')->group(function () {
 
     Route::middleware('auth:siswa')->group(function () {
         Route::get('/dasboard', [DashboardController::class, 'index'])->name('dashboard');
-      
+
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
         Route::singleton('/akun', AkunController::class)->except('show');
         Route::post('laporan/{aspirasi}/feedback', [LaporanPengaduanController::class, 'feedback'])
             ->name('laporan.feedback');
         Route::resource('laporan', LaporanPengaduanController::class)->except(['index', 'edit', 'update']);
+    });
+});
+
+Route::prefix('admin')->name('admin.')->group(function () {
+
+    
+    Route::middleware('guest:admin')->group(function () {
+        Route::get('login', [AdminAuthController::class, 'showLogin'])->name('login');
+        Route::post('login', [AdminAuthController::class, 'login']);
+    });
+
+
+    Route::middleware('auth:admin')->group(function () {
+        Route::get('/dasboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+        Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
+        Route::post('logout', [AdminAuthController::class, 'logout'])->name('logout');
+        Route::get('/akun', [AdminAkunController::class, 'index'])->name('akun');
+        Route::post('/akun', [AdminAkunController::class, 'updateProfile']);
+        Route::post('/akun/password', [AdminAkunController::class, 'updatePassword'])->name('akun.password');
     });
 });

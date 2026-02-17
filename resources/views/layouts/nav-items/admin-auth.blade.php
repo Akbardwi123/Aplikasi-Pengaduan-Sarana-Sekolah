@@ -19,6 +19,17 @@
     <ul class="dropdown-menu dropdown-menu-end shadow">
 
         <li>
+            <a href="{{ route('admin.akun') }}" class="dropdown-item">
+                <i class="bi bi-gear me-2"></i>
+                Akun Saya
+            </a>
+        </li>
+
+        <li>
+            <hr class="dropdown-divider">
+        </li>
+
+        <li>
             <form action="{{ route('admin.logout') }}" method="POST">
                 @csrf
                 <button type="submit" class="dropdown-item text-danger">
