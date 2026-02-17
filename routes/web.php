@@ -9,6 +9,7 @@ use App\Http\Controllers\Siswa\LaporanPengaduanController;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\AkunController as AdminAkunController;
+use App\Http\Controllers\Admin\KategoriController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -52,5 +53,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/akun', [AdminAkunController::class, 'index'])->name('akun');
         Route::post('/akun', [AdminAkunController::class, 'updateProfile']);
         Route::post('/akun/password', [AdminAkunController::class, 'updatePassword'])->name('akun.password');
+        Route::resource('kategori', KategoriController::class);
     });
 });

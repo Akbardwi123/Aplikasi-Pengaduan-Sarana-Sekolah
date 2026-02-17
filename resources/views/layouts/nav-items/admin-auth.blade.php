@@ -6,6 +6,12 @@
     </a>
 </li>
 
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('admin.kategori.index') }}">
+        Kategori
+    </a>
+</li>
+
 <li class="nav-item dropdown">
     <a
         class="nav-link dropdown-toggle d-flex align-items-center gap-2"
