@@ -12,6 +12,12 @@
     </a>
 </li>
 
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('admin.laporan.index') }}">
+        Laporan & Aspirasi
+    </a>
+</li>
+
 <li class="nav-item dropdown">
     <a
         class="nav-link dropdown-toggle d-flex align-items-center gap-2"
